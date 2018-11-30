@@ -1,0 +1,10 @@
+node {
+    git 'https://github.com/kaidommueller/maven-simple'
+    sh "pwd && ls -al"
+    // use the id of the globally configured maven instance
+    def mvnTool = tool 'Maven'
+    // execute maven
+    sh "${mvnTool}/bin/mvn clean install -Dmaven.test.skip=true"
+    sh "java -version"
+    sh "java -jar target/maven-simple-0.2-SNAPSHOT.jar"
+}
